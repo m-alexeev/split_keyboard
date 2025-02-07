@@ -5,21 +5,6 @@ def passthrough(key, keyboard, *args, **kwargs):
     return keyboard
 
 
-def default_pressed(key, keyboard, KC, coord_int=None, *args, **kwargs):
-    keyboard.hid_pending = True
-
-    keyboard.keys_pressed.add(key)
-
-    return keyboard
-
-
-def default_released(key, keyboard, KC, coord_int=None, *args, **kwargs):  # NOQA
-    keyboard.hid_pending = True
-    keyboard.keys_pressed.discard(key)
-
-    return keyboard
-
-
 def reset(*args, **kwargs):
     import microcontroller
 
@@ -37,17 +22,6 @@ def bootloader(*args, **kwargs):
 
     microcontroller.on_next_reset(microcontroller.RunMode.BOOTLOADER)
     microcontroller.reset()
-
-
-def debug_pressed(key, keyboard, KC, *args, **kwargs):
-    if keyboard.debug_enabled:
-        print('DebugDisable()')
-    else:
-        print('DebugEnable()')
-
-    keyboard.debug_enabled = not keyboard.debug_enabled
-
-    return keyboard
 
 
 def gesc_pressed(key, keyboard, KC, *args, **kwargs):
@@ -127,3 +101,21 @@ def ble_refresh(key, keyboard, *args, **kwargs):
     keyboard._hid_helper.stop_advertising()
     keyboard._hid_helper.start_advertising()
     return keyboard
+
+
+def ble_disconnect(key, keyboard, *args, **kwargs):
+    from kmk.hid import HIDModes
+
+    if keyboard.hid_type != HIDModes.BLE:
+        return keyboard
+
+    keyboard._hid_helper.clear_bonds()
+    return keyboard
+
+
+def any_pressed(key, keyboard, *args, **kwargs):
+    from random import randint
+
+    key.code = randint(4, 56)
+    keyboard.keys_pressed.add(key)
+    keyboard.hid_pending = True
