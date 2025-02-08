@@ -40,7 +40,7 @@ keyboard.keymap = [
         KC.Q, KC.W, KC.E, KC.R, KC.T,       KC.Y, KC.U, KC.I, KC.O, KC.P,
         KC.A, KC.S, KC.D, KC.F, KC.G,       KC.H, KC.J, KC.K, KC.L, KC.SCLN,
         KC.Z, KC.X, KC.C, KC.V, KC.B,       KC.N, KC.M, KC.COMMA, KC.DOT,KC.SLASH,
-            LA_1, KC.SPC, KC.LSFT,   X, X,  KC.BSPACE, KC.ENTER,LA_2,
+            KC.MO(1), KC.SPC, KC.LSFT,   X, X,  KC.BSPACE, KC.ENTER,KC.MO(2),
     ],
     # Function Layer 1
     [
@@ -52,7 +52,7 @@ keyboard.keymap = [
     [
         KC.N1, KC.N2,KC.N3,KC.N4,KC.N5,     KC.N6,KC.N7,KC.N8,KC.N9,KC.N0,
         T,KC.HOME,KC.END,T,KC.DEL,          T,KC.LPRN,KC.RPRN,KC.LBRACKET,KC.RBRACKET,
-        T,KC.LGUI,T,T,T,                    T,T,T,T,T,
+        T,KC.LGUI,T,T,T,                    CMD_TAB,T,T,T,T,
         T,T,T,                      X,X,    T,T,T,
     ],
 ]

@@ -4,7 +4,6 @@ from storage import getmount
 import board
 
 HUES = [4, 120, 180]
-
 side = SplitSide.RIGHT if str(getmount("/").label)[-1] == "R" else SplitSide.LEFT
 
 rgb = RGB(

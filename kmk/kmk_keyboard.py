@@ -1,10 +1,9 @@
 try:
-    from typing import Callable, Optional
+    from typing import Callable, Optional, Literal
 except ImportError:
     pass
 
 from collections import namedtuple
-from typing import List, Literal
 from keypad import Event as KeyEvent
 from microcontroller import Pin
 
